@@ -40,9 +40,13 @@ Configure your static assets in ``settings.py``::
 
 Then, update your ``wsgi.py`` file to use dj-static::
 
+    import os
     from django.core.wsgi import get_wsgi_application
-    from dj_static import Cling
 
+    # DJANGO_SETTINGS_MODULE must be set before importing Cling.
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
+
+    from dj_static import Cling
     application = Cling(get_wsgi_application())
 
 File uploads (optional)
